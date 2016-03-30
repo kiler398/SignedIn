@@ -1,0 +1,299 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".HomeFragment">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/border_gray_all">
+
+
+        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+            android:id="@+id/imgUser"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/user"
+        app:bootstrapBrand="info"
+            app:hasBorder="true" />
+
+        <TextView
+            android:id="@+id/txtUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgUser"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/imgUser"
+            android:text="张杰峰"
+            android:textColor="@color/c_black" />
+
+
+        <TextView
+        android:id="@+id/txtOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUserName"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/imgUser"
+            android:text="益娄高速第二监理段"
+            android:textColor="@color/c_black" />
+
+
+        <TextView
+        android:id="@+id/txtUserRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_below="@+id/txtOrg"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/imgUser"
+            android:text="监理工程师"
+            android:textColor="@color/c_black" />
+
+
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            android:id="@+id/iconWifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/txtNetWorkStatus"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toLeftOf="@+id/txtNetWorkStatus"
+            android:textSize="12sp"
+            app:bootstrapBrand="regular"
+            app:fontAwesomeIcon="fa_wifi"
+        />
+
+
+        <TextView
+        android:id="@+id/txtNetWorkStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/txtOrg"
+            android:layout_marginRight="5dp"
+            android:text="网络连接中"
+            android:textColor="@color/c_black" />
+
+
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            android:id="@+id/iconGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/iconWifi"
+            android:layout_alignTop="@+id/txtGPSStatus"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:textSize="12sp"
+            app:bootstrapBrand="regular"
+            app:fontAwesomeIcon="fa_location_arrow"
+        />
+
+        <TextView
+        android:id="@+id/txtGPSStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/txtUserRole"
+            android:layout_marginRight="5dp"
+            android:text="GPS定位中"
+            android:textColor="@color/c_black" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/border_gray_all">
+
+
+
+
+        <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:text="18:12"
+            android:textColor="@color/c_black"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/txtWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="星期一"
+                    android:textColor="@color/c_black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="2015-11-21"
+                    android:textColor="@color/c_black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/border_gray_all">
+
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            android:id="@+id/iconSignedStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+            android:textSize="12sp"
+            app:bootstrapBrand="warning"
+            app:fontAwesomeIcon="fa_warning"
+        />
+
+        <TextView
+        android:id="@+id/txtSignedStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/iconSignedStatus"
+            android:text="今日尚未完成考情签到"
+            android:textColor="@color/c_black" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/border_gray_all">
+
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            android:id="@+id/iconLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+            android:textSize="12sp"
+            app:bootstrapBrand="success"
+            app:fontAwesomeIcon="fa_location_arrow"
+        />
+
+        <TextView
+        android:id="@+id/txtLocation"
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/iconLocation"
+            android:text="GPS定位中..."
+            android:textColor="@color/c_black"
+            android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/border_gray_all">
+
+
+        />
+
+        <TextView
+        android:id="@+id/txtInfo"
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="GPS定位中..."
+            android:textColor="@color/c_black"
+            android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="15dp"
+            android:text="签到"
+            app:bootstrapBrand="primary"
+            app:bootstrapSize="lg"
+            app:buttonMode="regular"
+            app:roundedCorners="true"
+            app:showOutline="false"
+            />
+
+    </LinearLayout>
+    </ScrollView>
+</FrameLayout>

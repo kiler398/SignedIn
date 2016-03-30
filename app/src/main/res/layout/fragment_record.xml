@@ -1,0 +1,85 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context="com.srmn.xwork.signedin.RecordFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/border_gray_all">
+
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:text="签到记录"
+                android:textSize="12sp">
+
+            </TextView>
+
+            <com.beardedhen.androidbootstrap.BootstrapLabel
+                android:id="@+id/txtMonthInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                app:bootstrapBrand="success"
+                app:bootstrapHeading="h6"
+                app:bootstrapText="2015--01 应签/实签:(10/10) {fa_check_circle}"
+                />
+
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_gray_all">
+
+            <LinearLayout
+                android:id="@+id/calendarMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/border_gray_all">
+
+            <com.beardedhen.androidbootstrap.BootstrapLabel   android:id="@+id/txtDayInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                app:bootstrapBrand="success"
+                app:bootstrapHeading="h6"
+                app:bootstrapText="2015--01-19：已经签到 {fa_check_circle}"
+                />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>
