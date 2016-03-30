@@ -14,11 +14,12 @@ import com.iflytek.cloud.SpeakerVerifier;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechListener;
+import com.srmn.xwork.androidlib.utils.RandomUtil;
+import com.srmn.xwork.androidlib.utils.StringUtil;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
 import com.srmn.xwork.base.VoiceActivity;
-import com.srmn.xwork.utils.RandomUtil;
-import com.srmn.xwork.utils.StringUtil;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;

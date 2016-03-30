@@ -14,13 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.srmn.xwork.androidlib.gis.GISAMapLocationTask;
+import com.srmn.xwork.androidlib.gis.GISLocation;
+import com.srmn.xwork.androidlib.gis.GISLocationListener;
+import com.srmn.xwork.androidlib.gis.GISLocationOption;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
 import com.srmn.xwork.enity.DayTimeRange;
-import com.srmn.xwork.gis.GISAMapLocationTask;
-import com.srmn.xwork.gis.GISLocation;
-import com.srmn.xwork.gis.GISLocationListener;
-import com.srmn.xwork.gis.GISLocationOption;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;

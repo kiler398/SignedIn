@@ -1,6 +1,6 @@
 package com.srmn.xwork.enity;
 
-import com.srmn.xwork.utils.StringUtil;
+
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

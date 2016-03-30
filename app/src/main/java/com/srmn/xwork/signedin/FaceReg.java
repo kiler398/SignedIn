@@ -33,11 +33,12 @@ import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechUtility;
+import com.srmn.xwork.androidlib.utils.FaceUtil;
+import com.srmn.xwork.androidlib.utils.StringUtil;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
 import com.srmn.xwork.base.FaceActivity;
-import com.srmn.xwork.utils.FaceUtil;
-import com.srmn.xwork.utils.StringUtil;
+
 import com.srmn.xwork.utils.xfSDkUtil;
 
 import org.json.JSONArray;

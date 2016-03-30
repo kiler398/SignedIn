@@ -17,10 +17,10 @@ import android.widget.TextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
+import com.srmn.xwork.androidlib.utils.StringUtil;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.FaceActivity;
-import com.srmn.xwork.utils.FaceUtil;
-import com.srmn.xwork.utils.StringUtil;
+
 import com.srmn.xwork.utils.xfSDkUtil;
 
 import org.xutils.view.annotation.ContentView;

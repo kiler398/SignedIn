@@ -15,12 +15,13 @@ import android.widget.TextView;
 import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.model.LatLng;
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.srmn.xwork.androidlib.gis.GISLocation;
+import com.srmn.xwork.androidlib.utils.DateTimeUtil;
+import com.srmn.xwork.androidlib.utils.NumberUtil;
+import com.srmn.xwork.androidlib.utils.StringUtil;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseFragment;
-import com.srmn.xwork.gis.GISLocation;
-import com.srmn.xwork.utils.DateTimeUtil;
-import com.srmn.xwork.utils.NumberUtil;
-import com.srmn.xwork.utils.StringUtil;
+
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;

@@ -7,15 +7,14 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.iflytek.cloud.SpeechUtility;
+import com.srmn.xwork.androidlib.gis.GISLocation;
+import com.srmn.xwork.androidlib.gis.GISLocationOption;
+import com.srmn.xwork.androidlib.utils.GsonUtil;
+import com.srmn.xwork.androidlib.utils.IOUtil;
+import com.srmn.xwork.androidlib.utils.PackageUtils;
+import com.srmn.xwork.androidlib.utils.SharedPrefsUtil;
+import com.srmn.xwork.androidlib.utils.StringUtil;
 import com.srmn.xwork.enity.DayTimeRange;
-import com.srmn.xwork.gis.GISAMapLocationTask;
-import com.srmn.xwork.gis.GISLocation;
-import com.srmn.xwork.gis.GISLocationOption;
-import com.srmn.xwork.utils.GsonUtil;
-import com.srmn.xwork.utils.IOUtil;
-import com.srmn.xwork.utils.PackageUtils;
-import com.srmn.xwork.utils.SharedPrefsUtil;
-import com.srmn.xwork.utils.StringUtil;
 import com.srmn.xwork.utils.xfSDkUtil;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.update.UmengUpdateAgent;
@@ -27,13 +26,12 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.bmob.v3.Bmob;
 import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by kiler on 2016/1/3.
  */
-public class MyApplication extends Application {
+public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
 
 
     public static final String TAG = "MyApplication";
@@ -73,9 +71,7 @@ public class MyApplication extends Application {
     @Override public void onCreate() {
         super.onCreate();
         CrashReport.initCrashReport(this, "900017974", false);
-        // 初始化 Bmob SDK
-        // 使用时请将第二个参数Application ID替换成你在Bmob服务器端创建的Application ID
-        Bmob.initialize(this, "ff32f367d3eba0a1640ea824b66939e5");
+
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
         x.Ext.init(this);

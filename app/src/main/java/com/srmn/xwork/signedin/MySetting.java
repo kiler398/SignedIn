@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
-import com.srmn.xwork.utils.AlertDialogUtils;
+
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;

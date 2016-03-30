@@ -23,12 +23,12 @@ import android.view.MenuItem;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.srmn.xwork.gis.GISAMapLocationTask;
-import com.srmn.xwork.gis.GISLocation;
-import com.srmn.xwork.gis.GISLocationListener;
+import com.srmn.xwork.androidlib.gis.GISAMapLocationTask;
+import com.srmn.xwork.androidlib.gis.GISLocation;
+import com.srmn.xwork.androidlib.gis.GISLocationListener;
+import com.srmn.xwork.androidlib.gis.GISLocationOption;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
-import com.srmn.xwork.gis.GISLocationOption;
 import com.srmn.xwork.ui.TabEntity;
 
 import org.xutils.view.annotation.ContentView;
@@ -40,10 +40,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.SaveListener;
 import cn.jpush.android.api.JPushInterface;
-import de.greenrobot.event.EventBus;
+
 
 
 @ContentView(R.layout.activity_main)

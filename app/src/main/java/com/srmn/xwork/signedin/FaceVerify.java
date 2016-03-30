@@ -6,10 +6,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.srmn.xwork.androidlib.utils.RandomUtil;
+import com.srmn.xwork.androidlib.utils.StringUtil;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
-import com.srmn.xwork.utils.RandomUtil;
-import com.srmn.xwork.utils.StringUtil;
+
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;

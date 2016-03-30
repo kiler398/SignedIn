@@ -2,6 +2,8 @@ package com.srmn.xwork.utils;
 
 import android.provider.Settings;
 
+import com.srmn.xwork.androidlib.utils.PackageUtils;
+import com.srmn.xwork.androidlib.utils.SharedPrefsUtil;
 import com.srmn.xwork.app.MyApplication;
 
 /**
