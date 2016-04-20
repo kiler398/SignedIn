@@ -20,7 +20,7 @@ import com.srmn.xwork.androidlib.gis.GISLocationListener;
 import com.srmn.xwork.androidlib.gis.GISLocationOption;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
-import com.srmn.xwork.enity.DayTimeRange;
+import com.srmn.xwork.entities.PersonInfoEntity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -60,7 +60,7 @@ public class LocationLockSetting extends BaseActivity implements View.OnClickLis
             txtlocation.setText(MyApplication.getInstance().getCheckLocation().toString());
         else
             txtlocation.setText("");
-        txtCheckTime.setText(MyApplication.getInstance().getCheckDayTimeRange().toString());
+        txtCheckTime.setText(MyApplication.getInstance().getCheckDayTimeRange());
     }
 
     @Override
@@ -88,7 +88,7 @@ public class LocationLockSetting extends BaseActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 MyApplication.getInstance().setCheckLocationRange(Integer.parseInt(et.getText().toString()));
-                                txtLocationRange.setText(MyApplication.getInstance().getCheckLocationRange() + "(米)");
+                                txtLocationRange.setText(MyApplication.getInstance().getLo() + "(米)");
                             }
                         }).setNegativeButton("取消", null)
                         .show();
@@ -104,16 +104,16 @@ public class LocationLockSetting extends BaseActivity implements View.OnClickLis
 
                 final LocationLockSetting lactivity = (LocationLockSetting) context;
 
-                GISLocation location = MyApplication.getInstance().getCheckLocation();
+                PersonInfoEntity location = MyApplication.getInstance().getPersonInfo();
 
                 if (location == null) {
                     dtxtLocation.setText("");
                     dtxtlat.setText("0");
                     dtxtlng.setText("0");
                 } else {
-                    dtxtLocation.setText(location.getAddress() + "");
-                    dtxtlat.setText(location.getLatitude() + "");
-                    dtxtlng.setText(location.getLongitude() + "");
+                    dtxtLocation.setText(location.getLocationAddress() + "");
+                    dtxtlat.setText(location.getLocationLat() + "");
+                    dtxtlng.setText(location.getLocationLng() + "");
                 }
 
 
@@ -125,13 +125,13 @@ public class LocationLockSetting extends BaseActivity implements View.OnClickLis
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
-                                GISLocation location = new GISLocation();
+                                PersonInfoEntity personInfo = MyApplication.getInstance().getPersonInfo();
 
-                                location.setAddress(dtxtLocation.getText().toString());
-                                location.setLongitude(Double.parseDouble(dtxtlng.getText().toString()));
-                                location.setLatitude(Double.parseDouble(dtxtlat.getText().toString()));
+                                personInfo.setLocationAddress(dtxtLocation.getText().toString());
+                                personInfo.setLocationLng(Double.parseDouble(dtxtlng.getText().toString()));
+                                personInfo.setLocationLat(Double.parseDouble(dtxtlat.getText().toString()));
 
-                                MyApplication.getInstance().setCheckLocation(location);
+                                //MyApplication.getInstance().setCheckLocation(location);
 
                                 txtlocation.setText(MyApplication.getInstance().getCheckLocation().toString());
 
@@ -153,43 +153,7 @@ public class LocationLockSetting extends BaseActivity implements View.OnClickLis
 
 
                 break;
-            case R.id.rlCheckTime:
-                final View v1 = LayoutInflater.from(context).inflate(R.layout.dialog_time_range_picker, null);
 
-                final TimePicker dtxtStartTime = (TimePicker) v1.findViewById(R.id.txtStartTime);
-                final TimePicker dtxtEndTime = (TimePicker) v1.findViewById(R.id.txtEndTime);
-
-                DayTimeRange dayTimeRange = MyApplication.getInstance().getCheckDayTimeRange();
-
-                dtxtStartTime.setCurrentHour(dayTimeRange.getStartTime().getHours());
-                dtxtStartTime.setCurrentMinute(dayTimeRange.getStartTime().getMinutes());
-                dtxtStartTime.setIs24HourView(true);
-                dtxtEndTime.setCurrentMinute(dayTimeRange.getEndTime().getMinutes());
-                dtxtEndTime.setCurrentHour(dayTimeRange.getEndTime().getHours());
-                dtxtEndTime.setIs24HourView(true);
-
-                new android.app.AlertDialog.Builder(context)
-                        .setTitle("请输入签到时间段：")
-                        .setIcon(android.R.drawable.ic_dialog_info)
-                        .setView(v1)
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                DayTimeRange dayTimeRange = new DayTimeRange();
-                                dayTimeRange.setStartTime(new Date(2000, 1, 1, dtxtStartTime.getCurrentHour(), dtxtStartTime.getCurrentMinute(), 0));
-                                dayTimeRange.setEndTime(new Date(2000, 1, 1, dtxtEndTime.getCurrentHour(), dtxtEndTime.getCurrentMinute(), 0));
-
-                                MyApplication.getInstance().setCheckDayTimeRange(dayTimeRange);
-
-                                txtCheckTime.setText(MyApplication.getInstance().getCheckDayTimeRange().toString());
-                            }
-                        })
-                        .setNegativeButton("取消", null)
-                        .show();
-
-
-                break;
 
 
         }
@@ -205,7 +169,7 @@ public class LocationLockSetting extends BaseActivity implements View.OnClickLis
         if (location != null) {
             if (location.getErrorCode() == 0) {
 
-                MyApplication.getInstance().setCheckLocation(location);
+
 
                 MyApplication.getInstance().showLongToastMessage("定位成功！");
 

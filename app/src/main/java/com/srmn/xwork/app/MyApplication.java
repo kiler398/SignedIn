@@ -14,11 +14,14 @@ import com.srmn.xwork.androidlib.utils.IOUtil;
 import com.srmn.xwork.androidlib.utils.PackageUtils;
 import com.srmn.xwork.androidlib.utils.SharedPrefsUtil;
 import com.srmn.xwork.androidlib.utils.StringUtil;
-import com.srmn.xwork.enity.DayTimeRange;
+import com.srmn.xwork.dao.DaoContainer;
+import com.srmn.xwork.entities.PersonInfoEntity;
 import com.srmn.xwork.utils.xfSDkUtil;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.update.UmengUpdateAgent;
 
+import org.xutils.DbManager;
+import org.xutils.ex.DbException;
 import org.xutils.x;
 
 import java.io.IOException;
@@ -40,7 +43,8 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
 
     private static MyApplication instance;
 
-
+    protected DbManager dbmanager;
+    protected DaoContainer daoContainer;
 
     public static MyApplication getInstance() {
         return instance;
@@ -71,6 +75,35 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
     @Override public void onCreate() {
         super.onCreate();
         CrashReport.initCrashReport(this, "900017974", false);
+
+
+        DbManager.DaoConfig daoConfig = new DbManager.DaoConfig()
+                // 数据库的名字
+                .setDbName("SignedIn")
+                // 保存到指定路径
+                // .setDbDir(new File(Environment.getExternalStorageDirectory().getAbsolutePath()))
+                // 数据库的版本号
+                .setDbVersion(10)
+                // 数据库版本更新监听
+                .setDbUpgradeListener(new DbManager.DbUpgradeListener() {
+                    @Override
+                    public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
+
+                        if (oldVersion < newVersion) {//升级判断,如果再升级就要再加两个判断,从1到3,从2到3
+                            Log.e(TAG, "数据库版本更新了！");
+                            try {
+                                db.dropDb();
+                            } catch (DbException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                });
+
+        dbmanager = x.getDb(daoConfig);
+        daoContainer = new DaoContainer(dbmanager);
+
 
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
@@ -118,92 +151,53 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
 
     }
 
-    public GISLocation getCheckLocation() {
-        String json = SharedPrefsUtil.getStringValue(SharedPrefsNAME, "CheckLocation", "");
-
-        if (StringUtil.isNullOrEmpty(json))
-            return null;
-
-        return GsonUtil.DeserializerSingleDataResult(json, GISLocation.class);
-    }
-
-    public void setCheckLocation(GISLocation checkLocation) {
-        if (checkLocation == null)
-            SharedPrefsUtil.putStringValue(SharedPrefsNAME, "CheckLocation", "");
-        else
-            SharedPrefsUtil.putStringValue(SharedPrefsNAME, "CheckLocation", GsonUtil.getGson().toJson(checkLocation));
-    }
-
-    public DayTimeRange getCheckDayTimeRange()
-    {
-        String json = SharedPrefsUtil.getStringValue(SharedPrefsNAME, "CheckDayTimeRange", "");
-
-        if (StringUtil.isNullOrEmpty(json))
-            return new DayTimeRange();
-
-        return GsonUtil.DeserializerSingleDataResult(json, DayTimeRange.class);
-    }
-
-    public void setCheckDayTimeRange(DayTimeRange checkDayTimeRange) {
-        if (checkDayTimeRange == null)
-            SharedPrefsUtil.putStringValue(SharedPrefsNAME, "CheckDayTimeRange", GsonUtil.getGson().toJson(new DayTimeRange()));
-        else
-            SharedPrefsUtil.putStringValue(SharedPrefsNAME, "CheckDayTimeRange", GsonUtil.getGson().toJson(checkDayTimeRange));
-    }
-
-
-    public int getCheckLocationRange() {
-        return SharedPrefsUtil.getIntValue(SharedPrefsNAME, "CheckLocationRange", 50);
-    }
-
-    public void setCheckLocationRange(int checkLocationRange) {
-        SharedPrefsUtil.putIntValue(SharedPrefsNAME, "CheckLocationRange", checkLocationRange);
-    }
-
-
-    public String getLoginUserID() {
-        return SharedPrefsUtil.getStringValue(SharedPrefsNAME, "LoginUserID", "");
-    }
-
-    public void setLoginUserID(String loginUserID) {
-        SharedPrefsUtil.putStringValue(SharedPrefsNAME, "LoginUserID", loginUserID);
+    public PersonInfoEntity getPersonInfo() {
+        return this.daoContainer.getPersonInfoDaoInstance().getCurrentPersonInfo();
     }
 
     public String getFaceKey() {
-        return SharedPrefsUtil.getStringValue(SharedPrefsNAME, "FaceKey", "");
+        return getPersonInfo().getFaceCheckID();
     }
 
-    public void setFaceKey(String faceKey) {
-        SharedPrefsUtil.putStringValue(SharedPrefsNAME, "FaceKey", faceKey);
-    }
-
-
-    public String getVoiceKey() {
-        return SharedPrefsUtil.getStringValue(SharedPrefsNAME, "VoiceKey", "");
-    }
-
-    public void setVoiceKey(String voiceKey) {
-        SharedPrefsUtil.putStringValue(SharedPrefsNAME, "VoiceKey", voiceKey);
-    }
-
-
-    public boolean getFaceCheckEnable() {
-        return SharedPrefsUtil.getBooleanValue(SharedPrefsNAME, "FaceCheckEnable", false);
+    public String getLoginUserID() {
+        return getPersonInfo().getCode();
     }
 
     public void setFaceCheckEnable(boolean faceCheckEnable) {
-        SharedPrefsUtil.putBooleanValue(SharedPrefsNAME, "FaceCheckEnable", faceCheckEnable);
+        PersonInfoEntity personInfoEntity = getPersonInfo();
+        personInfoEntity.setEnableFaceCheck(faceCheckEnable);
+        try {
+            this.daoContainer.getPersonInfoDaoInstance().save(personInfoEntity);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
     }
-
-
-    public boolean getVoiceCheckEnable() {
-        return SharedPrefsUtil.getBooleanValue(SharedPrefsNAME, "VoiceCheckEnable", false);
+    public void setFaceKey(String newFaceKey) {
+        PersonInfoEntity personInfoEntity = getPersonInfo();
+        personInfoEntity.setFaceCheckID(newFaceKey);
+        try {
+            this.daoContainer.getPersonInfoDaoInstance().save(personInfoEntity);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setVoiceCheckEnable(boolean voiceCheckEnable) {
-        SharedPrefsUtil.putBooleanValue(SharedPrefsNAME, "VoiceCheckEnable", voiceCheckEnable);
+
     }
 
+    public String getVoiceKey() {
+        return null;
+    }
+
+    public GISLocation getCheckLocation() {
+
+        return null;
+    }
+
+    public float getCheckLocationRange() {
+        return 0;
+    }
 
     public boolean getTodayIsVerify() {
         if (!getTodayLocationIsVerify()) {
@@ -343,5 +337,35 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
 
     public String getVersionName() {
         return PackageUtils.getVersion(MyApplication.getContext());
+    }
+
+
+    public String getCheckDayTimeRange() {
+        return null;
+    }
+
+    public String getLo() {
+        return null;
+    }
+
+    public void setCheckLocationRange(int i) {
+
+
+    }
+
+    public void setLoginUserID(String s) {
+
+    }
+
+    public boolean getFaceCheckEnable() {
+        return false;
+    }
+
+    public boolean getVoiceCheckEnable() {
+        return false;
+    }
+
+    public void setVoiceKey(String newFaceKey) {
+
     }
 }
