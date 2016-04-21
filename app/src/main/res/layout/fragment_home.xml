@@ -46,7 +46,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="2dp"
             android:layout_toRightOf="@+id/imgUser"
-            android:text="张杰峰"
+            android:text="王峰"
             android:textColor="@color/c_black" />
 
 
@@ -225,7 +225,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="38dp"
             android:layout_marginBottom="3dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/border_gray_all">

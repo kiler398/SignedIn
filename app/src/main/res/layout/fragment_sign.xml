@@ -117,7 +117,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="60dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/border_gray_all">
@@ -272,7 +272,7 @@
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/btnSignIn"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="72dp"
                 android:layout_marginTop="15dp"
                 android:text="上报签到数据"
                 app:bootstrapBrand="primary"

@@ -14,11 +14,12 @@ import com.srmn.xwork.androidlib.utils.IOUtil;
 import com.srmn.xwork.androidlib.utils.PackageUtils;
 import com.srmn.xwork.androidlib.utils.SharedPrefsUtil;
 import com.srmn.xwork.androidlib.utils.StringUtil;
+import com.srmn.xwork.cfg.Configuration;
 import com.srmn.xwork.dao.DaoContainer;
 import com.srmn.xwork.entities.PersonInfoEntity;
 import com.srmn.xwork.utils.xfSDkUtil;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.umeng.update.UmengUpdateAgent;
+
 
 import org.xutils.DbManager;
 import org.xutils.ex.DbException;
@@ -74,7 +75,7 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
 
     @Override public void onCreate() {
         super.onCreate();
-        CrashReport.initCrashReport(this, "900017974", false);
+        CrashReport.initCrashReport(this, Configuration.BuglyAppID, false);
 
 
         DbManager.DaoConfig daoConfig = new DbManager.DaoConfig()
@@ -83,7 +84,7 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
                 // 保存到指定路径
                 // .setDbDir(new File(Environment.getExternalStorageDirectory().getAbsolutePath()))
                 // 数据库的版本号
-                .setDbVersion(10)
+                .setDbVersion(13)
                 // 数据库版本更新监听
                 .setDbUpgradeListener(new DbManager.DbUpgradeListener() {
                     @Override
@@ -163,11 +164,19 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
         return getPersonInfo().getCode();
     }
 
-    public void setFaceCheckEnable(boolean faceCheckEnable) {
+    public void updatePersonInfo(PersonInfoEntity personinfo) {
+        try {
+            this.daoContainer.getPersonInfoDaoInstance().update(personinfo);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void  setFaceCheckEnable(boolean faceCheckEnable) {
         PersonInfoEntity personInfoEntity = getPersonInfo();
         personInfoEntity.setEnableFaceCheck(faceCheckEnable);
         try {
-            this.daoContainer.getPersonInfoDaoInstance().save(personInfoEntity);
+            this.daoContainer.getPersonInfoDaoInstance().update(personInfoEntity);
         } catch (DbException e) {
             e.printStackTrace();
         }
@@ -176,28 +185,16 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
         PersonInfoEntity personInfoEntity = getPersonInfo();
         personInfoEntity.setFaceCheckID(newFaceKey);
         try {
-            this.daoContainer.getPersonInfoDaoInstance().save(personInfoEntity);
+            this.daoContainer.getPersonInfoDaoInstance().update(personInfoEntity);
         } catch (DbException e) {
             e.printStackTrace();
         }
     }
 
-    public void setVoiceCheckEnable(boolean voiceCheckEnable) {
 
-    }
 
-    public String getVoiceKey() {
-        return null;
-    }
 
-    public GISLocation getCheckLocation() {
 
-        return null;
-    }
-
-    public float getCheckLocationRange() {
-        return 0;
-    }
 
     public boolean getTodayIsVerify() {
         if (!getTodayLocationIsVerify()) {
@@ -288,9 +285,6 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
     public void autoUpdate(Context context) {
 
 
-        UmengUpdateAgent.setDeltaUpdate(false);
-        UmengUpdateAgent.setUpdateOnlyWifi(true);
-        UmengUpdateAgent.update(context);
 
 
     }
@@ -340,32 +334,75 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
     }
 
 
-    public String getCheckDayTimeRange() {
-        return null;
-    }
-
-    public String getLo() {
-        return null;
-    }
-
-    public void setCheckLocationRange(int i) {
+    public GISLocation getCheckLocation() {
 
 
-    }
+        PersonInfoEntity personInfoEntity = getPersonInfo();
 
-    public void setLoginUserID(String s) {
+        if(personInfoEntity==null)
+            return null;
 
+        if(personInfoEntity.getLocationAddress()==null)
+            return null;
+
+        GISLocation location = new GISLocation();
+
+        location.setAddress(personInfoEntity.getLocationAddress());
+        location.setLongitude(personInfoEntity.getLocationLng());
+        location.setLatitude(personInfoEntity.getLocationLat());
+
+        return location;
     }
 
     public boolean getFaceCheckEnable() {
-        return false;
+
+        PersonInfoEntity personInfoEntity = getPersonInfo();
+
+        if(personInfoEntity==null)
+            return false;
+
+        if(personInfoEntity.getEnableFaceCheck()==null)
+            return false;
+
+        return personInfoEntity.getEnableFaceCheck();
     }
 
     public boolean getVoiceCheckEnable() {
-        return false;
+
+        PersonInfoEntity personInfoEntity = getPersonInfo();
+
+        if(personInfoEntity==null)
+            return false;
+
+        if(personInfoEntity.getEnableVoiceCheck()==null)
+            return false;
+
+        return personInfoEntity.getEnableVoiceCheck();
+
     }
 
-    public void setVoiceKey(String newFaceKey) {
+    public float getCheckLocationRange() {
+        PersonInfoEntity personInfoEntity = getPersonInfo();
 
+        if(personInfoEntity==null)
+            return 0;
+
+        if(personInfoEntity.getCheckRange()<0)
+            return 0;
+
+        return personInfoEntity.getCheckRange();
+
+    }
+
+    public String getVoiceKey() {
+        PersonInfoEntity personInfoEntity = getPersonInfo();
+
+        if(personInfoEntity==null)
+            return "";
+
+        if(personInfoEntity.getVoiceCheckID()==null)
+            return "";
+
+        return personInfoEntity.getVoiceCheckID();
     }
 }

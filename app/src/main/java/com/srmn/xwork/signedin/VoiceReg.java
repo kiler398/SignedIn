@@ -27,6 +27,7 @@ import com.iflytek.cloud.VerifierResult;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
 import com.srmn.xwork.base.VoiceActivity;
+import com.srmn.xwork.entities.PersonInfoEntity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -247,7 +248,9 @@ public class VoiceReg extends BaseActivity implements View.OnClickListener {
                             if (verifierResult.suc == verifierResult.rgn) {
 
                                 MyApplication.getInstance().showLongToastMessage("注册成功");
-                                MyApplication.getInstance().setVoiceCheckEnable(true);
+                                PersonInfoEntity personInfoEntity = MyApplication.getInstance().getPersonInfo();
+                                personInfoEntity.setEnableVoiceCheck(true);
+                                MyApplication.getInstance().updatePersonInfo(personInfoEntity);
                                 finish();
                                 gotoActivity(VoiceLockSetting.class, Intent.FLAG_ACTIVITY_NEW_TASK);
 

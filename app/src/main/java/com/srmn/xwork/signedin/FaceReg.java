@@ -76,6 +76,8 @@ public class FaceReg extends FaceActivity implements View.OnClickListener {
         initSdk();
         btnPhoto.setOnClickListener(this);
         btnReg.setOnClickListener(this);
+
+
         txtAuthid.setText(MyApplication.getInstance().getFaceKey());
     }
 

@@ -1,10 +1,12 @@
 package com.srmn.xwork.entities;
 
+import com.srmn.xwork.androidlib.utils.StringUtil;
+
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 
 /**
  * Created by kiler on 2016/4/13.
@@ -30,15 +32,20 @@ public class PersonInfoEntity implements Serializable {
     @Column(name = "checkRange")
     public int checkRange;
     @Column(name = "checkStartTime")
-    public Time checkStartTime;
+    public Date checkStartTime;
     @Column(name = "checkEndTime")
-    public Time checkEndTime;
+    public Date checkEndTime;
     @Column(name = "enableFaceCheck")
     public Boolean enableFaceCheck;
     @Column(name = "faceCheckID")
     public String faceCheckID;
     @Column(name = "enableVoiceCheck")
     public Boolean enableVoiceCheck;
+
+    @Column(name = "orgName")
+    public String orgName;
+    @Column(name = "postionName")
+    public String postionName;
 
     @Column(name = "voiceCheckID")
     public String voiceCheckID;
@@ -138,5 +145,58 @@ public class PersonInfoEntity implements Serializable {
 
     public void setLocationAddress(String locationAddress) {
         this.locationAddress = locationAddress;
+    }
+
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public String getPostionName() {
+        return postionName;
+    }
+
+    public void setPostionName(String postionName) {
+        this.postionName = postionName;
+    }
+
+    public Date getCheckStartTime() {
+        return checkStartTime;
+    }
+
+    public void setCheckStartTime(Date checkStartTime) {
+        this.checkStartTime = checkStartTime;
+    }
+
+    public int getCheckRange() {
+        return checkRange;
+    }
+
+    public void setCheckRange(int checkRange) {
+        this.checkRange = checkRange;
+    }
+
+    public Date getCheckEndTime() {
+        return checkEndTime;
+    }
+
+    public void setCheckEndTime(Date checkEndTime) {
+        this.checkEndTime = checkEndTime;
+    }
+
+
+
+    public String toAddressString() {
+        if (StringUtil.isNullOrEmpty(this.getLocationAddress()))
+            return "";
+        return this.getLocationAddress() + "(" + this.getLocationLng() + "," + this.getLocationLat() + ")";
+    }
+
+    public String toLocationInfo() {
+        return this.getLocationLng() + "," + this.getLocationLat();
     }
 }

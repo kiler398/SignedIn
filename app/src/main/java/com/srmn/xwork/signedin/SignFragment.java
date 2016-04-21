@@ -261,7 +261,7 @@ public class SignFragment extends BaseFragment implements View.OnClickListener {
         if (MyApplication.getInstance().getCheckLocation() != null && location.getLatitude() > 1 && location.getLongitude() > 1) {
             if (MyApplication.getInstance().getCheckLocation().getLatitude() > 1 && MyApplication.getInstance().getCheckLocation().getLongitude() > 1) {
 
-                String info = "";
+                String info = "当前位置：";
 
                 if (!StringUtil.isNullOrEmpty(location.getAddress())) {
                     info = location.getAddress();

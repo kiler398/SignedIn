@@ -19,6 +19,7 @@ import com.srmn.xwork.androidlib.utils.StringUtil;
 import com.srmn.xwork.app.MyApplication;
 import com.srmn.xwork.base.BaseActivity;
 import com.srmn.xwork.base.VoiceActivity;
+import com.srmn.xwork.entities.PersonInfoEntity;
 
 
 import org.json.JSONArray;
@@ -158,8 +159,10 @@ public class VoiceVerify extends BaseActivity implements View.OnClickListener {
 //                    }
 //                });
 
-                String newFaceKey = MyApplication.getInstance().getLoginUserID() + RandomUtil.generateString(8);
-                MyApplication.getInstance().setVoiceKey(newFaceKey);
+                String newVoiceKey = MyApplication.getInstance().getLoginUserID() + RandomUtil.generateString(8);
+                PersonInfoEntity personInfoEntity = MyApplication.getInstance().getPersonInfo();
+                personInfoEntity.setVoiceCheckID(newVoiceKey);
+                MyApplication.getInstance().updatePersonInfo(personInfoEntity);
                 gotoActivity(VoiceReg.class);
                 break;
         }

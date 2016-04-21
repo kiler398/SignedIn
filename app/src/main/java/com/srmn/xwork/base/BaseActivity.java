@@ -13,7 +13,7 @@ import android.view.KeyEvent;
 
 import com.srmn.xwork.signedin.HomeFragment;
 import com.srmn.xwork.signedin.SignFragment;
-import com.umeng.analytics.MobclickAgent;
+
 
 import org.xutils.x;
 
@@ -25,24 +25,20 @@ import cn.jpush.android.api.JPushInterface;
  * Created by kiler on 2016/1/8.
  */
 public class BaseActivity extends com.srmn.xwork.androidlib.ui.BaseActivity {
-    protected AppCompatActivity context;
-
-
-
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        //JPushInterface.onResume(context);
-        MobclickAgent.onResume(this);
+        JPushInterface.onResume(context);
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        //JPushInterface.onPause(context);
-        MobclickAgent.onPause(this);
+        JPushInterface.onPause(context);
+
 
     }
 
