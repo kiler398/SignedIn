@@ -12,17 +12,19 @@ public class DaoContainer implements IDaoContainer {
     private DbManager _db;
 
     private PersonInfoDao personInfoDaoDaoInstance;
-
+    private SignedInfoDao signedInfoDaoDaoInstance;
 
     public DaoContainer(DbManager db) {
         this._db = db;
         personInfoDaoDaoInstance = new PersonInfoDao(this._db, this);
-
+        signedInfoDaoDaoInstance = new SignedInfoDao(this._db, this);
     }
 
     public PersonInfoDao getPersonInfoDaoInstance() {
         return personInfoDaoDaoInstance;
     }
 
-
+    public SignedInfoDao getSignedInfoDaoInstance() {
+        return signedInfoDaoDaoInstance;
+    }
 }

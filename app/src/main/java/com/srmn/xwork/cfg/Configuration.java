@@ -5,5 +5,6 @@ package com.srmn.xwork.cfg;
  */
 public class Configuration {
     public static final String BuglyAppID = "900017974";
+    public static final String XfAppID =  "565e478a";
 
 }

@@ -21,8 +21,8 @@ import com.iflytek.cloud.FaceRequest;
 import com.iflytek.cloud.RequestListener;
 import com.iflytek.cloud.SpeechError;
 import com.srmn.xwork.androidlib.utils.FaceListener;
-import com.srmn.xwork.androidlib.utils.FaceUtil;
 import com.srmn.xwork.signedin.R;
+import com.srmn.xwork.utils.FaceUtil;
 
 
 import org.json.JSONArray;

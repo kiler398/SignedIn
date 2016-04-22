@@ -112,8 +112,7 @@ public class MyApplication extends  com.srmn.xwork.androidlib.ui.MyApplication {
         x.Ext.setDebug(true); // 是否输出debug日志
         TypefaceProvider.registerDefaultIconSets();
         instance = this;
-        SpeechUtility.createUtility(this, "appid=" + xfSDkUtil.getAppID());
-//        copyofflineMap();
+        SpeechUtility.createUtility(this, "appid="+Configuration.XfAppID);
 
     }
 

@@ -34,8 +34,5 @@ public class xfSDkUtil {
         return PackageUtils.readApplicationMetaDataStringValue("IFLYTEK_APPKEY",MyApplication.getInstance());
     }
 
-    public static String getChannelID()
-    {
-        return PackageUtils.readApplicationMetaDataStringValue("IFLYTEK_CHANNEL",MyApplication.getInstance());
-    }
+
 }

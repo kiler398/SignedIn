@@ -95,6 +95,7 @@ public class VoiceReg extends BaseActivity implements View.OnClickListener {
         progressDialog = ProgressDialog.show(context, "请稍等", "声纹引擎初始化中...", true);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         // 清空参数
+        mVerifier.cancel();
         mVerifier.setParameter(SpeechConstant.PARAMS, null);
         mVerifier.setParameter(SpeechConstant.ISV_PWDT, "" + PWD_TYPE_NUM);
         mVerifier.getPasswordList(new SpeechListener() {

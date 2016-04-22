@@ -56,6 +56,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     private RelativeLayout rlUserInfo;
     @ViewInject(R.id.rlLocationReg)
     private RelativeLayout rlLocationReg;
+    @ViewInject(R.id.rlVersion)
+    private RelativeLayout rlVersion;
     @ViewInject(R.id.txtEnableVoiceCheck)
     private TextView txtEnableVoiceCheck;
     @ViewInject(R.id.ibtnVoiceCheckSetting)
@@ -135,7 +137,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         rlFaceReg.setOnClickListener(this);
         rlVoiceReg.setOnClickListener(this);
         rlLocationReg.setOnClickListener(this);
-
+        rlVersion.setOnClickListener(this);
 
         return v;
     }
@@ -193,6 +195,11 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
             case R.id.rlLocationReg:
                 ((Main) this.getActivity()).gotoActivity(LocationLockSetting.class);
                 break;
+            case R.id.rlVersion:
+//                ((Main) this.getActivity()).gotoActivity(FaceVideoVerify.class);
+                break;
+
+
         }
 
 
